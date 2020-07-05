@@ -1,34 +1,30 @@
 <template>
-	<div class="hello">
-		<h1>Machines</h1>
-
-		<apollo-query :query="require('../queries/machines.js').default">
-			<template slot-scope="{ result: { loading, error, data } }">
-				<h3 v-if="loading">Loading</h3>
-				<h3 v-if="error">Oh No</h3>
-				<div v-if="data">
-					<router-link
-						:key="machine.id"
-						v-for="machine in data.machines"
-						:to="{
-							name: 'Machine',
-							params: { id: machine.id, slug: machine.name },
-						}"
+	<apollo-query :query="require('../queries/machines.js').default">
+		<template slot-scope="{ result: { loading, error, data } }">
+			<h3 v-if="loading">Loading</h3>
+			<h3 v-if="error">Oh No</h3>
+			<div v-if="data">
+				<v-card
+					:key="machine.id"
+					v-for="machine in data.machines"
+					:to="{
+						name: 'Machine',
+						params: { id: machine.id, slug: machine.name },
+					}"
+				>
+					<v-img
+						:src="machine.image.url"
+						class="white--text align-end"
+						gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+						height="200px"
 					>
-						{{ machine.name }}
-						<!-- <img
-							v-if="s.photo && s.photo.url"
-							width="100"
-							height="100"
-							:src="s.photo.url"
-							:alt="s.name"
-						/> -->
-					</router-link>
-				</div>
-				<div v-else class="empty">No Speakers match your search</div>
-			</template>
-		</apollo-query>
-	</div>
+						<v-card-title v-text="machine.name" />
+					</v-img>
+				</v-card>
+			</div>
+			<div v-else>Nothing to show</div>
+		</template>
+	</apollo-query>
 </template>
 
 <script>

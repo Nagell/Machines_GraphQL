@@ -5,6 +5,9 @@ export default gql`
 		machines {
 			id
 			name
+			image {
+				url
+			}
 		}
 	}
 `

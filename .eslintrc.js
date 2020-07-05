@@ -16,6 +16,8 @@ module.exports = {
 				semi: false,
 				singleQuote: true,
 				trailingComma: 'es5',
+				useTabs: true,
+				tabSize: 4,
 			},
 		],
 		'vue/attribute-hyphenation': ['error', 'always'],

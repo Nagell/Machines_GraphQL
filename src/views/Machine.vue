@@ -1,5 +1,5 @@
 <template>
-	<div class="about">
+	<div>
 		<apollo-query
 			:query="require('../queries/machine.js').default"
 			:variables="{ id: $route.params.id }"
@@ -24,7 +24,7 @@
 						</li>
 					</ol>
 				</div>
-				<div v-else class="empty">No Speakers match your search</div>
+				<div v-else>Nothing to show</div>
 			</template>
 		</apollo-query>
 	</div>
