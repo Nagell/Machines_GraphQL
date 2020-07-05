@@ -10,12 +10,6 @@ module.exports = {
 		'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
 		'no-mixed-operators': 'error',
 		'no-param-reassign': 'error',
-		'no-restricted-imports': [
-			'error',
-			{
-				patterns: ['./*', '../*'],
-			},
-		],
 		'prettier/prettier': [
 			'error',
 			{

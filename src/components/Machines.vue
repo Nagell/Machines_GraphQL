@@ -7,17 +7,23 @@
 				<h3 v-if="loading">Loading</h3>
 				<h3 v-if="error">Oh No</h3>
 				<div v-if="data">
-					{{ data }}
-					<li :key="m.id" v-for="m in data.machine">
-						<!-- 						<img
+					<router-link
+						:key="machine.id"
+						v-for="machine in data.machines"
+						:to="{
+							name: 'Machine',
+							params: { id: machine.id, slug: machine.name },
+						}"
+					>
+						{{ machine.name }}
+						<!-- <img
 							v-if="s.photo && s.photo.url"
 							width="100"
 							height="100"
 							:src="s.photo.url"
 							:alt="s.name"
 						/> -->
-						<span>{{ s.name }}</span>
-					</li>
+					</router-link>
 				</div>
 				<div v-else class="empty">No Speakers match your search</div>
 			</template>
