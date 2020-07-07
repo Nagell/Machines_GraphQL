@@ -8,6 +8,14 @@ export default gql`
 			image {
 				url
 			}
+			sensors {
+				id
+				name
+			}
+			location {
+				latitude
+				longitude
+			}
 		}
 	}
 `

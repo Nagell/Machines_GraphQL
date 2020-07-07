@@ -1,7 +1,7 @@
 import { gql } from 'apollo-boost'
 
 export default gql`
-	query sensorData($id: ID, $from: DateTime!, $to: DateTime!) {
+	query sensorData($id: ID!, $from: DateTime!, $to: DateTime!) {
 		machine(where: { id: $id }) {
 			id
 			name
