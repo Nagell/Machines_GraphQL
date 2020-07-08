@@ -8,7 +8,7 @@
 					<h1>{{ $route.params.slug }}</h1>
 
 					<!-- Overview -->
-					<machine-overview :machine-id="$route.params.id" />
+					<machine-overview :machine-id="machineId" />
 				</v-col>
 
 				<!-- Date pickers -->
@@ -65,8 +65,8 @@
 	</div>
 </template>
 <script>
-import SensorData from '@/components/SensorData.vue'
-import MachineOverview from '@/components/MachineOverview.vue'
+import SensorData from '@/components/SensorData'
+import MachineOverview from '@/components/MachineOverview'
 
 export default {
 	name: 'machine',
@@ -86,7 +86,13 @@ export default {
 				ampmInTitle: false,
 				format: '24hr',
 			},
+			machineId: null,
 		}
+	},
+	beforeMount() {
+		this.machineId = this.$route.params.id
+			? this.$route.params.id
+			: localStorage.getItem('lastMachineId')
 	},
 	methods: {
 		formattedDateTime(dateTime = null) {

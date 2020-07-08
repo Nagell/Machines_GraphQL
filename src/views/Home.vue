@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Machines from '@/components/Machines.vue'
+import Machines from '@/components/Machines'
 
 export default {
 	name: 'home',

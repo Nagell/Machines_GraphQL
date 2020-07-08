@@ -18,7 +18,7 @@
 								<v-img
 									:src="machine.image.url"
 									class="white--text align-end"
-									gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+									gradient="to bottom left, rgba(100,115,201,.33), rgba(25,32,72,.7)"
 									height="200px"
 								>
 									<v-card-title v-text="machine.name" />

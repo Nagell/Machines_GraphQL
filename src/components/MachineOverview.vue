@@ -18,12 +18,12 @@
 						/>
 					</v-col>
 					<v-col xl="7" lg="6" md="12" sm="6" cols="12">
-						<h3 class="mb-2">Machine position:</h3>
+						<h3 class="mb-2">Machine position</h3>
 						<ul>
 							<li>Latitude: {{ data.machine.location.latitude }}</li>
 							<li>Longitude: {{ data.machine.location.longitude }}</li>
 						</ul>
-						<h3 class="mt-4 mb-2">Sensors:</h3>
+						<h3 class="mt-4 mb-2">Sensors</h3>
 						<ul>
 							<li :key="sensor.id" v-for="sensor in data.machine.sensors">
 								{{ sensor.name }}
@@ -41,8 +41,9 @@
 export default {
 	props: {
 		machineId: {
-			type: String,
-			required: true,
+			type: [String],
+			default: null,
+			required: false,
 		},
 	},
 }
