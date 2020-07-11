@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import config from '@/config'
 import LineChart from '@/charts/LineChart'
 
 import MixinTime from '@/mixins/time'
@@ -24,37 +25,7 @@ export default {
 	data() {
 		return {
 			datacollection: null,
-			chartOptions: {
-				responsive: true,
-				maintainAspectRatio: false,
-				scales: {
-					yAxes: [
-						{
-							type: 'linear',
-							ticks: {
-								suggestedMin: 0,
-							},
-						},
-					],
-					xAxes: [
-						{
-							type: 'time',
-							time: {
-								unit: 'hour',
-							},
-						},
-					],
-				},
-				legend: {
-					align: 'start',
-					position: 'bottom',
-					labels: {
-						fontSize: 16,
-						padding: 15,
-						fontFamily: "'Roboto', sans-serif",
-					},
-				},
-			},
+			chartOptions: config.lineChart,
 		}
 	},
 	computed: {
