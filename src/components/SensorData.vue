@@ -11,21 +11,8 @@
 			<h3 v-if="loading">Loading</h3>
 			<h3 v-if="error">Oh No</h3>
 			<div v-if="data && data.machine">
-				<!-- Data -->
-				<v-row justify="center">
-					<ol v-if="data.machine.sensors">
-						<li :key="sensor.id" v-for="sensor in data.machine.sensors">
-							<h3>{{ sensor.name }}</h3>
-							<ul v-if="sensor.data">
-								<li :key="dataPoint.id" v-for="dataPoint of sensor.data">
-									<p>Id: {{ dataPoint.id }}</p>
-									<p>DataTime: {{ dataPoint.dataTime }}</p>
-									<p>value: {{ dataPoint.value }}</p>
-								</li>
-							</ul>
-						</li>
-					</ol>
-				</v-row>
+				<!-- Chart -->
+				<sensors-chart :chart-data="data.machine.sensors" />
 			</div>
 			<div v-else>Nothing to show</div>
 		</template>
@@ -33,11 +20,16 @@
 </template>
 
 <script>
+import SensorsChart from '@/components/SensorsChart'
+
 export default {
+	name: 'sensor-data',
+	components: { SensorsChart },
 	props: {
 		machineId: {
 			type: String,
-			required: true,
+			default: '',
+			required: false,
 		},
 		from: {
 			type: String,

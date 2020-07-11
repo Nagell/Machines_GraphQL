@@ -53,9 +53,9 @@
 						<v-col xl="10" lg="10" md="10" sm="12" cols="12">
 							<sensor-data
 								v-if="fromDateTime !== null && toDateTime !== null"
-								:machine-id="$route.params.id"
-								:from="formattedDateTime(fromDateTime)"
-								:to="formattedDateTime(toDateTime)"
+								:machine-id="machineId"
+								:from="mx_time_getDateWithoutUTC(fromDateTime)"
+								:to="mx_time_getDateWithoutUTC(toDateTime)"
 							/>
 						</v-col>
 					</v-row>
@@ -65,8 +65,10 @@
 	</div>
 </template>
 <script>
-import SensorData from '@/components/SensorData'
 import MachineOverview from '@/components/MachineOverview'
+import SensorData from '@/components/SensorData'
+
+import MixinTime from '@/mixins/time'
 
 export default {
 	name: 'machine',
@@ -74,10 +76,11 @@ export default {
 		SensorData,
 		MachineOverview,
 	},
+	mixins: [MixinTime],
 	data() {
 		return {
-			fromDateTime: null,
-			toDateTime: null,
+			fromDateTime: new Date('July 1, 2020 20:00:00'),
+			toDateTime: new Date('July 1, 2020 21:00:00'),
 			textFieldProps: {
 				appendIcon: 'mdi-calendar',
 			},
@@ -93,14 +96,6 @@ export default {
 		this.machineId = this.$route.params.id
 			? this.$route.params.id
 			: localStorage.getItem('lastMachineId')
-	},
-	methods: {
-		formattedDateTime(dateTime = null) {
-			let time = dateTime.getTime(),
-				timeZoneOffset = dateTime.getTimezoneOffset() * 60000
-
-			return new Date(time - timeZoneOffset).toJSON()
-		},
 	},
 }
 </script>

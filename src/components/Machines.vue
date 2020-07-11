@@ -5,27 +5,33 @@
 				<template slot-scope="{ result: { loading, error, data } }">
 					<h3 v-if="loading">Loading</h3>
 					<h3 v-if="error">Oh No</h3>
-					<div v-if="data">
-						<v-flex>
-							<v-card
+					<v-col v-if="data" sm="12" cols="12">
+						<v-row align="center" justify="center">
+							<v-col
 								:key="machine.id"
 								v-for="machine in data.machines"
-								:to="{
-									name: 'Machine',
-									params: { id: machine.id, slug: machine.name },
-								}"
+								sm="6"
+								cols="10"
 							>
-								<v-img
-									:src="machine.image.url"
-									class="white--text align-end"
-									gradient="to bottom left, rgba(100,115,201,.33), rgba(25,32,72,.7)"
-									height="200px"
+								<v-card
+									:to="{
+										name: 'Machine',
+										params: { id: machine.id, slug: machine.name },
+									}"
 								>
-									<v-card-title v-text="machine.name" />
-								</v-img>
-							</v-card>
-						</v-flex>
-					</div>
+									<v-img
+										:src="machine.image.url"
+										class="white--text align-end"
+										gradient="to bottom left, rgba(100,115,201,.33), rgba(25,32,72,.7)"
+										height="200px"
+									>
+										<v-card-title v-text="machine.name" />
+									</v-img>
+								</v-card>
+							</v-col>
+						</v-row>
+					</v-col>
+
 					<div v-else>Nothing to show</div>
 				</template>
 			</apollo-query>
@@ -36,10 +42,5 @@
 <script>
 export default {
 	name: 'machines',
-	data() {
-		return {
-			key: 1,
-		}
-	},
 }
 </script>
