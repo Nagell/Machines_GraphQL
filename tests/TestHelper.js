@@ -3,7 +3,6 @@ import VueApollo from 'vue-apollo'
 import VueRouter from 'vue-router'
 import { routes } from '@/router/index'
 import vuetify from '@/plugins/vuetify'
-import Vuetify from 'vuetify/lib'
 import DatetimePicker from 'vuetify-datetime-picker'
 
 /**
@@ -24,7 +23,6 @@ class SetupHelper {
 		let localVue = createLocalVue()
 		localVue.use(VueApollo)
 		localVue.use(VueRouter)
-		localVue.use(Vuetify)
 		localVue.use(DatetimePicker)
 
 		let router = new VueRouter({ routes })
@@ -36,7 +34,7 @@ class SetupHelper {
 						{
 							localVue,
 							router,
-
+							vuetify,
 							mocks: {
 								$apolloData: {
 									loading: false,
@@ -53,7 +51,7 @@ class SetupHelper {
 						{
 							localVue,
 							router,
-
+							vuetify,
 							mocks: {
 								$apolloData: {
 									loading: false,

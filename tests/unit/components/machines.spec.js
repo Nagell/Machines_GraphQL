@@ -1,4 +1,4 @@
-import { SetupHelper } from '../TestHelper'
+import { SetupHelper } from '../../TestHelper'
 // Component to test
 import Machines from '@/components/Machines'
 

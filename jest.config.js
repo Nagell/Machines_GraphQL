@@ -3,6 +3,7 @@ module.exports = {
 	collectCoverage: false,
 	verbose: true,
 	watch: false,
+	setupFiles: ['./tests/setup.js'],
 	moduleFileExtensions: ['js', 'jsx', 'json', 'vue'],
 	transform: {
 		'^.+\\.vue$': 'vue-jest',
