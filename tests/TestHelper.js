@@ -5,6 +5,9 @@ import { routes } from '@/router/index'
 import vuetify from '@/plugins/vuetify'
 import DatetimePicker from 'vuetify-datetime-picker'
 
+const { addMockFunctionsToSchema } = require('apollo-server')
+import schema from './__mocks__/mockSchema'
+
 /**
  * Test setup helper
  */
@@ -27,6 +30,13 @@ class SetupHelper {
 
 		let router = new VueRouter({ routes })
 
+		// Adding mocks for GraphQL and Apollo
+		addMockFunctionsToSchema({
+			schema,
+			preserveResolvers: true,
+		})
+
+		// creating a wrapper for tests
 		let wrapper = asShallowMount
 			? shallowMount(
 					component,
@@ -36,6 +46,13 @@ class SetupHelper {
 							router,
 							vuetify,
 							mocks: {
+								$apollo: {
+									queries: {
+										machines: {
+											loading: true,
+										},
+									},
+								},
 								$apolloData: {
 									loading: false,
 								},
@@ -63,6 +80,7 @@ class SetupHelper {
 					)
 			  )
 
+		// setting window width / height
 		if (widthHeight) {
 			wrapper.element._jsdomMockClientWidth = widthHeight.width
 			wrapper.element._jsdomMockClientHeight = widthHeight.height
