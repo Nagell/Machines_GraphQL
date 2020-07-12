@@ -1,12 +1,24 @@
-import { shallowMount } from '@vue/test-utils'
-import HelloWorld from '@/components/HelloWorld'
+import { SetupHelper } from '../TestHelper'
+// Component to test
+import Machines from '@/components/Machines'
 
-describe('HelloWorld.vue', () => {
-	it('renders props.msg when passed', () => {
-		const msg = 'new message'
-		const wrapper = shallowMount(HelloWorld, {
-			propsData: { msg },
-		})
-		expect(wrapper.text()).toMatch(msg)
+describe('Machines view: ApolloQuerry test', () => {
+	let sh, wrapper
+	let ApolloQuery
+
+	// setup before each test
+	beforeEach(done => {
+		sh = new SetupHelper()
+		wrapper = sh.setupWrapper(Machines, false, {})
+		ApolloQuery = wrapper.find('#machines-apollo-query')
+		done()
+	})
+
+	it('is a Vue instance', () => {
+		expect(wrapper.isVueInstance()).toBeTruthy()
+	})
+
+	it('ApolloQuery exists', () => {
+		expect(ApolloQuery.exists()).toBe(true)
 	})
 })

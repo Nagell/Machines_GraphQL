@@ -1,7 +1,10 @@
 <template>
 	<v-container class="fill-height" fluid>
 		<v-row align="center" justify="center">
-			<apollo-query :query="require('../queries/machines.js').default">
+			<apollo-query
+				id="machines-apollo-query"
+				:query="require('../queries/machines.js').default"
+			>
 				<template slot-scope="{ result: { loading, error, data } }">
 					<h3 v-if="loading">Loading</h3>
 					<h3 v-if="error">Oh No</h3>
